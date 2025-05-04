@@ -26,10 +26,12 @@ export const getPropertyById = async (req, res) => {
 // Create a new property
 export const createProperty = async (req, res) => {
   try {
+    console.log("Incoming property data:", req.body);
     const property = new Property(req.body);
     const savedProperty = await property.save();
     res.status(201).json(savedProperty);
   } catch (error) {
+    console.log("Validation errors:", error.errors);
     res.status(400).json({ message: error.message });
   }
 };

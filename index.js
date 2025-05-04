@@ -18,12 +18,15 @@ import propertyRoutes from './Routes/propertyRoutes.js';
 dotenv.config();
 
 const app = express();
-
-app.use(cors({
-    origin: "https://mateluxy-frontend-sudw.vercel.app", // Replace with your frontend URL
+const corsOptions = {
+    origin: process.env.NODE_ENV === 'development' 
+      ? 'http://localhost:5173'  
+      : 'https://mateluxy-frontend-sudw.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true,
-}));
+    credentials: true
+  };
+  
+  app.use(cors(corsOptions));
 
 app.use(express.json());
 

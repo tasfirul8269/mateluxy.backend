@@ -17,7 +17,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-    origin: "https://mateluxy-frontend-sudw.vercel.app", // Replace with your frontend URL
+    origin: process.env.CLIENT_URL, // Replace with your frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));

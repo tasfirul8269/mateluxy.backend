@@ -31,7 +31,17 @@ export const createProperty = async (req, res) => {
     const savedProperty = await property.save();
     res.status(201).json(savedProperty);
   } catch (error) {
-    console.log("Validation errors:", error.errors);
+    // Add detailed error logging
+    console.error("Validation errors:", error.errors);
+    
+    // Return more specific error information
+    if (error.name === "ValidationError") {
+      return res.status(400).json({ 
+        message: "Validation Error", 
+        details: Object.values(error.errors).map(e => e.message)
+      });
+    }
+    
     res.status(400).json({ message: error.message });
   }
 };

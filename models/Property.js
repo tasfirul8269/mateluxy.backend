@@ -41,7 +41,7 @@ const propertySchema = new mongoose.Schema({
     
     // Legal and Agent
     dldPermitNumber: { type: String, required: true },
-    agent: { type: String }, // Changed from ObjectId to String for simplicity
+    agent: { type: String, required: true }, // Changed from ObjectId to String for simplicity
     dldQrCode: { type: String, required: true },
     
     // Location

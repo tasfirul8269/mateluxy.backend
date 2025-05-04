@@ -9,10 +9,11 @@ import {
 
 const router = express.Router();
 
+// In propertyRoutes.js
 router.get('/', getAllProperties);
 router.get('/:id', getPropertyById);
-router.post('/add-property', createProperty);
-router.put('/update-property/:id', updateProperty);
-router.delete('/delete-property/:id', deleteProperty);
+router.post('/', createProperty);  // Changed from '/add-property'
+router.put('/:id', updateProperty); // Changed from '/update-property/:id'
+router.delete('/:id', deleteProperty); // Changed from '/delete-property/:id'
 
 export default router;

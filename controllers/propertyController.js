@@ -29,29 +29,27 @@ export const createProperty = async (req, res) => {
     // Validate agent exists
     const agent = await Agent.findById(req.body.agent);
     if (!agent) {
-      return res.status(400).json({ message: "Invalid agent ID" });
+      return res.status(400).json({ 
+        message: "Invalid agent ID" 
+      });
     }
 
     const property = new Property({
       ...req.body,
-      agent: req.body.agent // Store agent ID reference
+      category: req.body.category // Ensure category is provided
     });
-    
+
     const savedProperty = await property.save();
     res.status(201).json(savedProperty);
-  } catch (error) {
-    // Add detailed error logging
-    console.error("Validation errors:", error.errors);
     
-    // Return more specific error information
+  } catch (error) {
     if (error.name === "ValidationError") {
       return res.status(400).json({ 
-        message: "Validation Error", 
+        message: "Validation Error",
         details: Object.values(error.errors).map(e => e.message)
       });
     }
-    
-    res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 

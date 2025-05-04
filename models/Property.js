@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 const propertySchema = new mongoose.Schema({
     // General Details
-    propertyTitle: { type: String},
+    propertyTitle: { type: String, required: true },
     propertyDescription: { type: String},
     propertyAddress: { type: String },
     propertyCountry: { type: String},
@@ -50,11 +50,15 @@ const propertySchema = new mongoose.Schema({
     
     // Features and Amenities
     features: [{ type: String }],
-    amenities: [{ type: String }]
+    amenities: [{ type: String }],
+
+    category: { 
+        type: String, 
+        required: true,
+        enum: ['Buy', 'Rent', 'Off Plan', 'Commercial for Buy', 'Commercial for Rent'] 
+    },
 }, {
     timestamps: true
 });
 
-const Property = mongoose.models.Property || mongoose.model('Property', propertySchema);
-
-export default Property;
+export default mongoose.model('Property', propertySchema);

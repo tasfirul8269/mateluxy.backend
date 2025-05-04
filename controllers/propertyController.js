@@ -26,8 +26,17 @@ export const getPropertyById = async (req, res) => {
 // Create a new property
 export const createProperty = async (req, res) => {
   try {
-    console.log("Incoming property data:", req.body);
-    const property = new Property(req.body);
+    // Validate agent exists
+    const agent = await Agent.findById(req.body.agent);
+    if (!agent) {
+      return res.status(400).json({ message: "Invalid agent ID" });
+    }
+
+    const property = new Property({
+      ...req.body,
+      agent: req.body.agent // Store agent ID reference
+    });
+    
     const savedProperty = await property.save();
     res.status(201).json(savedProperty);
   } catch (error) {

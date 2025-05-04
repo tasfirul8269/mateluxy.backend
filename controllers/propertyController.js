@@ -1,3 +1,4 @@
+import Agent from '../models/agents.model.js';
 import Property from '../models/Property.js';
 
 // Get all properties
@@ -27,7 +28,7 @@ export const getPropertyById = async (req, res) => {
 export const createProperty = async (req, res) => {
   try {
     // Validate agent exists
-    const agent = await Agent.findById(req.body.agent);
+    const agent = await Agentent.findById(req.body.agent);
     if (!agent) {
       return res.status(400).json({ 
         message: "Invalid agent ID" 

@@ -1,15 +1,18 @@
 import express from 'express';
 import mongoose from 'mongoose'; 
 import dotenv from 'dotenv';
-import rentPropertiesRouter from './Routes/RentProperties.routes.js';
+import propertiesRout from './Routes/properties.routes.js';
 import agentsRouter from './Routes/agents.routes.js';
 import addAgents from './Routes/addAgents.routes.js';
 import adminsRouter from './Routes/admins.routes.js';
 import addAdmins from './Routes/addAdmins.route.js';
 import adminSignIn from './Routes/adminSignIn.route.js';
 import authRouter from './Routes/authStatus.js';
+import addProperties from './Routes/addProperties.route.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+const propertyRoutes = require('./Routes/propertyRoutes');
+
 
 
 dotenv.config();
@@ -32,7 +35,8 @@ mongoose.connect(process.env.MONGO).then(() => {
 });
 
 
-app.use('/api/properties', rentPropertiesRouter);
+app.use('/api', propertiesRout);
+
 app.use('/api', agentsRouter);
 app.use('/api/agents', addAgents);
 app.use('/', adminsRouter);
@@ -40,6 +44,8 @@ app.use('/admins', addAdmins);
 app.use('/api', adminSignIn);
 app.use(cookieParser());
 app.use('/api/admin', authRouter);
+app.use('/api/properties', propertyRoutes);
+
 
 
 app.use((err, req, res, next) => {

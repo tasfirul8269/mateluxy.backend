@@ -10,7 +10,7 @@ const propertySchema = new mongoose.Schema({
     propertyFeaturedImage: { type: String, required: true },
     media: [{ type: String }], // links to images/videos
 
-    propertyType: { type: String, required: true },
+    propertyType: { type: String, required: true }, // e.g. Apartment, Villa, etc.
     propertyPrice: { type: Number, required: true }, // Yearly
     roiPercentage: { type: Number, required: true },
     numberOfCheques: { type: Number, required: true },
@@ -37,4 +37,6 @@ const propertySchema = new mongoose.Schema({
     timestamps: true
 });
 
-export default mongoose.model('Property', propertySchema);
+const Rent = mongoose.model('Property', propertySchema);
+
+export default Rent;

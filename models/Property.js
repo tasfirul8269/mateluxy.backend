@@ -3,23 +3,23 @@ import mongoose from 'mongoose';
 
 const propertySchema = new mongoose.Schema({
     // General Details
-    propertyTitle: { type: String, required: true },
-    propertyDescription: { type: String, required: true },
-    propertyAddress: { type: String, required: true },
-    propertyCountry: { type: String, required: true },
-    propertyState: { type: String, required: true },
-    propertyZip: { type: String, required: true },
-    propertyFeaturedImage: { type: String, required: true },
+    propertyTitle: { type: String},
+    propertyDescription: { type: String},
+    propertyAddress: { type: String },
+    propertyCountry: { type: String},
+    propertyState: { type: String},
+    propertyZip: { type: String },
+    propertyFeaturedImage: { type: String },
     media: [{ type: String }], // links to images/videos
 
     // Category and Type
-    category: { type: String, required: true, enum: ['Buy', 'Rent', 'Off Plan', 'Commercial for Buy', 'Commercial for Rent'] },
-    propertyType: { type: String, required: true }, // e.g. Apartment, Villa, etc.
+    category: { type: String,enum: ['Buy', 'Rent', 'Off Plan', 'Commercial for Buy', 'Commercial for Rent'] },
+    propertyType: { type: String }, // e.g. Apartment, Villa, etc.
     
     // Price Details
-    propertyPrice: { type: Number, required: true },
+    propertyPrice: { type: Number},
     numberOfCheques: { type: Number },
-    brokerFee: { type: Number, required: true },
+    brokerFee: { type: Number},
     
     // Rent-specific
     roiPercentage: { type: Number },
@@ -33,20 +33,20 @@ const propertySchema = new mongoose.Schema({
     commercialType: { type: String },
     
     // Property Features
-    propertySize: { type: Number, required: true }, // in sq ft
-    propertyRooms: { type: Number, required: true },
-    propertyBedrooms: { type: Number, required: true },
-    propertyKitchen: { type: Number, required: true },
-    propertyBathrooms: { type: Number, required: true },
+    propertySize: { type: Number }, // in sq ft
+    propertyRooms: { type: Number},
+    propertyBedrooms: { type: Number},
+    propertyKitchen: { type: Number},
+    propertyBathrooms: { type: Number },
     
     // Legal and Agent
-    dldPermitNumber: { type: String, required: true },
-    agent: { type: String, required: true }, // Changed from ObjectId to String for simplicity
-    dldQrCode: { type: String, required: true },
+    dldPermitNumber: { type: String },
+    agent: { type: String }, // Changed from ObjectId to String for simplicity
+    dldQrCode: { type: String},
     
     // Location
-    latitude: { type: Number, required: true },
-    longitude: { type: Number, required: true },
+    latitude: { type: Number },
+    longitude: { type: Number },
     
     // Features and Amenities
     features: [{ type: String }],

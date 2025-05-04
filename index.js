@@ -20,7 +20,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-    origin: "https://mateluxy-frontend-sudw.vercel.app", // Replace with your frontend URL
+    origin: ["https://mateluxy-frontend-sudw.vercel.app", "http://localhost:5173"], // Replace with your frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));

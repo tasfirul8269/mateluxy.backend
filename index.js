@@ -18,15 +18,21 @@ import propertyRoutes from './Routes/propertyRoutes.js';
 dotenv.config();
 
 const app = express();
-const corsOptions = {
-    origin: process.env.NODE_ENV === 'development' 
-      ? 'http://localhost:5173'  
-      : 'https://mateluxy-frontend-sudw.vercel.app',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
-  };
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://mateluxy-frontend-sudw.vercel.app'
+  ];
   
-  app.use(cors(corsOptions));
+  app.use(cors({
+    origin: function(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true, // if you're using cookies/auth
+  }));
 
 app.use(express.json());
 

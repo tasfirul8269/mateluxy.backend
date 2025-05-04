@@ -1,7 +1,7 @@
 
-import { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
 
-const propertySchema = new Schema({
+const propertySchema = new mongoose.Schema({
     // General Details
     propertyTitle: { type: String, required: true },
     propertyDescription: { type: String, required: true },
@@ -55,6 +55,6 @@ const propertySchema = new Schema({
     timestamps: true
 });
 
-const Property = model('Property', propertySchema);
+const Property = mongoose.models.Property || mongoose.model('Property', propertySchema);
 
 export default Property;

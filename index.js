@@ -11,7 +11,7 @@ import authRouter from './Routes/authStatus.js';
 import addProperties from './Routes/addProperties.route.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-const propertyRoutes = require('./Routes/propertyRoutes');
+import propertyRoutes from './Routes/propertyRoutes.js';
 
 
 

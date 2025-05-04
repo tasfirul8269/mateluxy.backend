@@ -1,8 +1,7 @@
-
-const Property = require('../models/Property').default;
+import Property from '../models/Property.js';
 
 // Get all properties
-exports.getAllProperties = async (req, res) => {
+export const getAllProperties = async (req, res) => {
   try {
     const properties = await Property.find();
     res.status(200).json(properties);
@@ -12,7 +11,7 @@ exports.getAllProperties = async (req, res) => {
 };
 
 // Get a single property
-exports.getPropertyById = async (req, res) => {
+export const getPropertyById = async (req, res) => {
   try {
     const property = await Property.findById(req.params.id);
     if (!property) {
@@ -25,7 +24,7 @@ exports.getPropertyById = async (req, res) => {
 };
 
 // Create a new property
-exports.createProperty = async (req, res) => {
+export const createProperty = async (req, res) => {
   try {
     const property = new Property(req.body);
     const savedProperty = await property.save();
@@ -36,7 +35,7 @@ exports.createProperty = async (req, res) => {
 };
 
 // Update a property
-exports.updateProperty = async (req, res) => {
+export const updateProperty = async (req, res) => {
   try {
     const property = await Property.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!property) {
@@ -49,7 +48,7 @@ exports.updateProperty = async (req, res) => {
 };
 
 // Delete a property
-exports.deleteProperty = async (req, res) => {
+export const deleteProperty = async (req, res) => {
   try {
     const property = await Property.findByIdAndDelete(req.params.id);
     if (!property) {

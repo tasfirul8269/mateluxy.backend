@@ -22,8 +22,8 @@ export const adminSignIn = async (req, res, next) => {
 
         res.cookie("access_token", token, {
             httpOnly: true,
-            secure: false, // must be false on localhost (HTTP)
-            sameSite: "lax" // or "strict", either is fine
+            secure: true, // must be false on localhost (HTTP)
+            sameSite: "None" // or "strict", either is fine
         }).status(200).json(rest);
 
     } catch (error) {
